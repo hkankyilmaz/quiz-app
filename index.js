@@ -45,25 +45,6 @@ class Quiz {
   set question(value) {
     this._questions = value;
   }
-
-  startQuiz(divid, buttonid1, buttonid2, buttonid3) {
-    const qs = () => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          // document.getElementById(divid).innerHTML = question[0];
-          // document.getElementById(buttonid1).innerHTML = question[1].a;
-          // document.getElementById(buttonid2).innerHTML = question[1].b;
-          // document.getElementById(buttonid3).innerHTML = question[1].c;
-          resolve(console.log("deneme"));
-        }, 5000);
-      });
-    };
-    console.log(this._questions);
-    this._questions._questions.map(async (question, idx) => {
-      await qs(question);
-      await qs(question);
-    });
-  }
 }
 
 let questions = new Question();
@@ -92,4 +73,22 @@ questions.addQuestions(
 console.log(questions);
 
 let quiz = new Quiz(questions);
-quiz.startQuiz();
+
+//   startQuiz(divid, buttonid1, buttonid2, buttonid3) {
+//     const qs = () => {
+//       return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//           // document.getElementById(divid).innerHTML = question[0];
+//           // document.getElementById(buttonid1).innerHTML = question[1].a;
+//           // document.getElementById(buttonid2).innerHTML = question[1].b;
+//           // document.getElementById(buttonid3).innerHTML = question[1].c;
+//           resolve(console.log("deneme"));
+//         }, 5000);
+//       });
+//     };
+//     console.log(this._questions);
+//     this._questions._questions.map(async (question, idx) => {
+//       await qs(question);
+//       await qs(question);
+//     });
+//   }
