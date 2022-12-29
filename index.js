@@ -36,7 +36,7 @@ class Question {
 
 class Quiz {
   constructor(questions) {
-    this._questions = questions;
+    this.questions_ = questions;
   }
 
   get question() {
@@ -45,50 +45,84 @@ class Quiz {
   set question(value) {
     this._questions = value;
   }
+  startQuiz(divid, buttonid1, buttonid2, buttonid3) {
+    let self = this;
+    let rightAnswer = 0;
+    let timer = 9;
+    let counter = 0;
+    console.log(this.questions_._questions);
+    if (counter == 0) {
+      document.getElementById(divid).innerHTML =
+        this.questions_._questions[0][0];
+      document.getElementById(buttonid1).innerHTML =
+        this.questions_._questions[0][1].a;
+      document.getElementById(buttonid2).innerHTML =
+        this.questions_._questions[0][1].b;
+      document.getElementById(buttonid3).innerHTML =
+        this.questions_._questions[0][1].c;
+    }
+
+    const setInt = setInterval(() => {
+      console.log(timer);
+      if (timer < 10) {
+        console.log("1. blok calisti");
+        timer = timer - 1;
+      }
+      if (timer == 0) {
+        console.log("2. blok calisti");
+        timer = 9;
+        counter = counter + 1;
+        document.getElementById(divid).innerHTML =
+          self.questions_._questions[counter][0];
+        document.getElementById(buttonid1).innerHTML =
+          self.questions_._questions[counter][1].a;
+        document.getElementById(buttonid2).innerHTML =
+          self.questions_._questions[counter][1].b;
+        document.getElementById(buttonid3).innerHTML =
+          this.questions_._questions[counter][1].c;
+        if (timer == 9 && counter == 2) {
+          console.log("3. blok calisti");
+          timer = 9;
+          counter = 0;
+          clearInterval(setInt);
+          const setIntFinish = setInterval(() => {
+            timer = timer - 1;
+            console.log(timer);
+            if (timer == 0) {
+              clearInterval(setIntFinish);
+              // result()
+            }
+          }, 1000);
+        }
+      }
+    }, 1000);
+  }
 }
 
-let questions = new Question();
+let questions_ = new Question();
 
-questions.addQuestions(
-  "Asagilardan Hnagisi Turkiyenin Baskentidir ?",
+questions_.addQuestions(
+  "Asagilardan Hangisi Turkiyenin Baskentidir ?",
   { a: "Yozgat", b: "Batman", c: "Ankara" },
   "Ankara"
 );
-questions.addQuestions(
+questions_.addQuestions(
   "Iskandinav Mitolojinde Thorun Cekicinin Adi Nedir ?",
   { a: "Mjollnir", b: "Mjolnir", c: "Mjolnirr" },
   "Ankara"
 );
-questions.addQuestions(
+questions_.addQuestions(
   "Counter Strike Globel Oyununda AWP Silahi Sarjor Kapasitesi Nedir ? ",
   { a: "7", b: "5", c: "31" },
   "5"
 );
-questions.addQuestions(
+questions_.addQuestions(
   "2022 Turkiye Survivor Yarismasini Kim Kazanmistir",
   [{ a: "Nisa", b: "Osman", c: "Messi" }],
   "Nisa"
 );
 
-console.log(questions);
+console.log(questions_);
 
-let quiz = new Quiz(questions);
-
-//   startQuiz(divid, buttonid1, buttonid2, buttonid3) {
-//     const qs = () => {
-//       return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//           // document.getElementById(divid).innerHTML = question[0];
-//           // document.getElementById(buttonid1).innerHTML = question[1].a;
-//           // document.getElementById(buttonid2).innerHTML = question[1].b;
-//           // document.getElementById(buttonid3).innerHTML = question[1].c;
-//           resolve(console.log("deneme"));
-//         }, 5000);
-//       });
-//     };
-//     console.log(this._questions);
-//     this._questions._questions.map(async (question, idx) => {
-//       await qs(question);
-//       await qs(question);
-//     });
-//   }
+let quiz = new Quiz(questions_);
+quiz.startQuiz("question", "options-one", "options-two", "options-three");
