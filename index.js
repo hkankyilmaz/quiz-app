@@ -67,7 +67,6 @@ class Quiz {
 
     divs.forEach((item) => {
       item.addEventListener("click", () => {
-        console.log(counter);
         if (counter < 4) {
           let answer = item.innerHTML;
           if (this.questions_._questions[counter][2] == answer) {
@@ -87,9 +86,7 @@ class Quiz {
               self.questions_._questions[counter][1].b;
             document.getElementById(buttonid3).innerHTML =
               this.questions_._questions[counter][1].c;
-            console.log("Doğru Cevap", answer);
           } else {
-            console.log("Yanlıs Verilen Cevap", answer);
             timer = 9;
             counter += 1;
             if (counter == 4) {
@@ -105,8 +102,6 @@ class Quiz {
               self.questions_._questions[counter][1].b;
             document.getElementById(buttonid3).innerHTML =
               this.questions_._questions[counter][1].c;
-
-            console.log(counter);
             return;
           }
         } else {
@@ -117,7 +112,6 @@ class Quiz {
         }
       });
     });
-
     if (counter == 0) {
       document.getElementById(divid).innerHTML =
         this.questions_._questions[0][0];
@@ -128,13 +122,11 @@ class Quiz {
       document.getElementById(buttonid3).innerHTML =
         this.questions_._questions[0][1].c;
     }
-
     const setInt = setInterval(() => {
       if (isFinish) clearInterval(setInt);
       if (timer < 10) {
         timer -= 1;
         document.querySelector("#time").innerHTML = timer;
-        console.log(timer);
       }
       if (timer == 0) {
         timer = 9;
@@ -157,7 +149,6 @@ class Quiz {
             if (isFinish) clearInterval(setIntFinish);
             timer = timer - 1;
             document.querySelector("#time").innerHTML = timer;
-            console.log(timer);
             if (timer == 0) {
               clearInterval(setIntFinish);
               clearInterval(setInt);
