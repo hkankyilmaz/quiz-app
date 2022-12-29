@@ -20,6 +20,10 @@ body {
   @apply cursor-pointer hover:bg-blue-700;
 }
 
-.time {
+.time,
+span {
   border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }

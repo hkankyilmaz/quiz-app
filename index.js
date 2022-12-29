@@ -46,8 +46,15 @@ class Quiz {
     this._questions = value;
   }
 
-  result() {}
+  result(rightAnswer) {
+    document.querySelector(
+      "#text"
+    ).innerHTML = `4 Sorudan <span class="bg-orange-300 p-4 text-center">${rightAnswer} </span> Tanesine Doğru Cevap Verdiniz`;
+
+    document.querySelector("#result").style.display = "flex";
+  }
   startQuiz(divid, buttonid1, buttonid2, buttonid3, _counter) {
+    let isFinish = false;
     let self = this;
     let rightAnswer = 0;
     let timer = 9;
@@ -56,29 +63,40 @@ class Quiz {
       "#options-one,#options-two,#options-three"
     );
     document.querySelector("#time").innerHTML = timer;
+    document.querySelector("#result").style.display = "none";
 
     divs.forEach((item) => {
       item.addEventListener("click", () => {
-        let answer = item.innerHTML;
-        if (this.questions_._questions[counter][2] == answer) {
-          rightAnswer += 1;
-          counter += 1;
-          document.getElementById(divid).innerHTML =
-            self.questions_._questions[counter][0];
-          document.getElementById(buttonid1).innerHTML =
-            self.questions_._questions[counter][1].a;
-          document.getElementById(buttonid2).innerHTML =
-            self.questions_._questions[counter][1].b;
-          document.getElementById(buttonid3).innerHTML =
-            this.questions_._questions[counter][1].c;
-          console.log("Verilen Cevap", answer);
-
-          if (counter == 3) {
-            this.result();
-          } else {
-            console.log("Verilen Cevap", answer);
-            counter += 1;
+        console.log(counter);
+        if (counter < 4) {
+          let answer = item.innerHTML;
+          if (this.questions_._questions[counter][2] == answer) {
+            rightAnswer += 1;
             timer = 9;
+            counter += 1;
+            if (counter == 4) {
+              isFinish = true;
+              this.result(rightAnswer);
+              return;
+            }
+            document.getElementById(divid).innerHTML =
+              self.questions_._questions[counter][0];
+            document.getElementById(buttonid1).innerHTML =
+              self.questions_._questions[counter][1].a;
+            document.getElementById(buttonid2).innerHTML =
+              self.questions_._questions[counter][1].b;
+            document.getElementById(buttonid3).innerHTML =
+              this.questions_._questions[counter][1].c;
+            console.log("Doğru Cevap", answer);
+          } else {
+            console.log("Yanlıs Verilen Cevap", answer);
+            timer = 9;
+            counter += 1;
+            if (counter == 4) {
+              isFinish = true;
+              this.result(rightAnswer);
+              return;
+            }
             document.getElementById(divid).innerHTML =
               self.questions_._questions[counter][0];
             document.getElementById(buttonid1).innerHTML =
@@ -89,36 +107,12 @@ class Quiz {
               this.questions_._questions[counter][1].c;
 
             console.log(counter);
-            this.startQuiz(
-              "question",
-              "options-one",
-              "options-two",
-              "options-three",
-              counter
-            );
             return;
           }
         } else {
-          console.log("Yanlıs Verilen Cevap", answer);
-          timer = 9;
-          counter += 1;
-          document.getElementById(divid).innerHTML =
-            self.questions_._questions[counter][0];
-          document.getElementById(buttonid1).innerHTML =
-            self.questions_._questions[counter][1].a;
-          document.getElementById(buttonid2).innerHTML =
-            self.questions_._questions[counter][1].b;
-          document.getElementById(buttonid3).innerHTML =
-            this.questions_._questions[counter][1].c;
-
-          console.log(counter);
-          this.startQuiz(
-            "question",
-            "options-one",
-            "options-two",
-            "options-three",
-            counter
-          );
+          isFinish = true;
+          clearInterval(setInt);
+          this.result(rightAnswer);
           return;
         }
       });
@@ -136,9 +130,11 @@ class Quiz {
     }
 
     const setInt = setInterval(() => {
+      if (isFinish) clearInterval(setInt);
       if (timer < 10) {
         timer -= 1;
         document.querySelector("#time").innerHTML = timer;
+        console.log(timer);
       }
       if (timer == 0) {
         timer = 9;
@@ -158,12 +154,15 @@ class Quiz {
           counter = 0;
           clearInterval(setInt);
           const setIntFinish = setInterval(() => {
+            if (isFinish) clearInterval(setIntFinish);
             timer = timer - 1;
             document.querySelector("#time").innerHTML = timer;
             console.log(timer);
             if (timer == 0) {
               clearInterval(setIntFinish);
-              // result()
+              clearInterval(setInt);
+              this.result(rightAnswer);
+              return;
             }
           }, 1000);
         }
@@ -182,7 +181,7 @@ questions_.addQuestions(
 questions_.addQuestions(
   "Iskandinav Mitolojinde Thorun Cekicinin Adi Nedir ?",
   { a: "Mjollnir", b: "Mjolnir", c: "Mjolnirr" },
-  "Ankara"
+  "Mjollnir"
 );
 questions_.addQuestions(
   "Counter Strike Globel Oyununda AWP Silahi Sarjor Kapasitesi Nedir ? ",
@@ -197,3 +196,12 @@ questions_.addQuestions(
 
 let quiz = new Quiz(questions_);
 quiz.startQuiz("question", "options-one", "options-two", "options-three", 0);
+
+document.getElementById("btn").addEventListener("click", () => {
+  location.reload();
+});
+
+// -Doğru CevaplarAsagilardan Hangisi Turkiyenin Baskentidir ? Cevap:Ankara
+// -Iskandinav Mitolojinde Thorun Cekicinin Adi Nedir ? Cevap:Mjollnir
+// -Counter Strike Globel Oyununda AWP Silahi Sarjor Kapasitesi Nedir ? Cevap: 5
+// -2022 Turkiye Survivor Yarismasini Kim Kazanmistir ? Cevap:Nisa

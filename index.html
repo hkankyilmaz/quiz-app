@@ -7,7 +7,7 @@
     <title>Quiz App</title>
     <link rel="stylesheet" href="output.css" />
   </head>
-  <body class="bg-blue-900 p-20">
+  <body class="bg-blue-900 p-20 relative">
     <div id="main">
       <div id="container" class="flex flex-col">
         <h1 class="text-white mt-10 text-[3em] text-center">
@@ -43,7 +43,15 @@
           id="time"
           class="time rounded !bg-red-700 w-[80px] h-[80px] text-[35px] text-white p-3 text-center m-auto translate-y-10 font-bold"
         ></div>
-        <div id="loader"></div>
+        <div
+          id="result"
+          class="absolute right-0 top-0 bg-slate-700 w-100w h-100v opacity-90 flex flex-col justify-center items-center text-white text-[40px]"
+        >
+          <p id="text"><span id="span"></span></p>
+          <button id="btn" class="bg-orange-300 p-4 rounded-xl mt-10">
+            Quizi Tekrarla
+          </button>
+        </div>
       </div>
     </div>
     <script src="index.js"></script>
