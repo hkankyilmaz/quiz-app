@@ -45,12 +45,85 @@ class Quiz {
   set question(value) {
     this._questions = value;
   }
-  startQuiz(divid, buttonid1, buttonid2, buttonid3) {
+
+  result() {}
+  startQuiz(divid, buttonid1, buttonid2, buttonid3, _counter) {
     let self = this;
     let rightAnswer = 0;
     let timer = 9;
-    let counter = 0;
-    console.log(this.questions_._questions);
+    let counter = _counter;
+    let divs = document.querySelectorAll(
+      "#options-one,#options-two,#options-three"
+    );
+    document.querySelector("#time").innerHTML = timer;
+
+    divs.forEach((item) => {
+      item.addEventListener("click", () => {
+        let answer = item.innerHTML;
+        if (this.questions_._questions[counter][2] == answer) {
+          rightAnswer += 1;
+          counter += 1;
+          document.getElementById(divid).innerHTML =
+            self.questions_._questions[counter][0];
+          document.getElementById(buttonid1).innerHTML =
+            self.questions_._questions[counter][1].a;
+          document.getElementById(buttonid2).innerHTML =
+            self.questions_._questions[counter][1].b;
+          document.getElementById(buttonid3).innerHTML =
+            this.questions_._questions[counter][1].c;
+          console.log("Verilen Cevap", answer);
+
+          if (counter == 3) {
+            this.result();
+          } else {
+            console.log("Verilen Cevap", answer);
+            counter += 1;
+            timer = 9;
+            document.getElementById(divid).innerHTML =
+              self.questions_._questions[counter][0];
+            document.getElementById(buttonid1).innerHTML =
+              self.questions_._questions[counter][1].a;
+            document.getElementById(buttonid2).innerHTML =
+              self.questions_._questions[counter][1].b;
+            document.getElementById(buttonid3).innerHTML =
+              this.questions_._questions[counter][1].c;
+
+            console.log(counter);
+            this.startQuiz(
+              "question",
+              "options-one",
+              "options-two",
+              "options-three",
+              counter
+            );
+            return;
+          }
+        } else {
+          console.log("Yanlıs Verilen Cevap", answer);
+          timer = 9;
+          counter += 1;
+          document.getElementById(divid).innerHTML =
+            self.questions_._questions[counter][0];
+          document.getElementById(buttonid1).innerHTML =
+            self.questions_._questions[counter][1].a;
+          document.getElementById(buttonid2).innerHTML =
+            self.questions_._questions[counter][1].b;
+          document.getElementById(buttonid3).innerHTML =
+            this.questions_._questions[counter][1].c;
+
+          console.log(counter);
+          this.startQuiz(
+            "question",
+            "options-one",
+            "options-two",
+            "options-three",
+            counter
+          );
+          return;
+        }
+      });
+    });
+
     if (counter == 0) {
       document.getElementById(divid).innerHTML =
         this.questions_._questions[0][0];
@@ -63,15 +136,14 @@ class Quiz {
     }
 
     const setInt = setInterval(() => {
-      console.log(timer);
       if (timer < 10) {
-        console.log("1. blok calisti");
-        timer = timer - 1;
+        timer -= 1;
+        document.querySelector("#time").innerHTML = timer;
       }
       if (timer == 0) {
-        console.log("2. blok calisti");
         timer = 9;
-        counter = counter + 1;
+        document.querySelector("#time").innerHTML = timer;
+        counter += 1;
         document.getElementById(divid).innerHTML =
           self.questions_._questions[counter][0];
         document.getElementById(buttonid1).innerHTML =
@@ -80,13 +152,14 @@ class Quiz {
           self.questions_._questions[counter][1].b;
         document.getElementById(buttonid3).innerHTML =
           this.questions_._questions[counter][1].c;
-        if (timer == 9 && counter == 2) {
-          console.log("3. blok calisti");
+        if (timer == 9 && counter == 3) {
           timer = 9;
+          document.querySelector("#time").innerHTML = timer;
           counter = 0;
           clearInterval(setInt);
           const setIntFinish = setInterval(() => {
             timer = timer - 1;
+            document.querySelector("#time").innerHTML = timer;
             console.log(timer);
             if (timer == 0) {
               clearInterval(setIntFinish);
@@ -117,12 +190,10 @@ questions_.addQuestions(
   "5"
 );
 questions_.addQuestions(
-  "2022 Turkiye Survivor Yarismasini Kim Kazanmistir",
-  [{ a: "Nisa", b: "Osman", c: "Messi" }],
+  "2022 Turkiye Survivor Yarismasini Kim Kazanmistir ?",
+  { a: "Nisa", b: "Osman", c: "Messi" },
   "Nisa"
 );
 
-console.log(questions_);
-
 let quiz = new Quiz(questions_);
-quiz.startQuiz("question", "options-one", "options-two", "options-three");
+quiz.startQuiz("question", "options-one", "options-two", "options-three", 0);

@@ -16,3 +16,10 @@ body {
 .c-mid {
   @apply flex justify-center items-center text-white text-2xl;
 }
+.opt {
+  @apply cursor-pointer hover:bg-blue-700;
+}
+
+.time {
+  border-radius: 50%;
+}
