@@ -7,13 +7,18 @@
     <title>Quiz App</title>
     <link rel="stylesheet" href="output.css" />
   </head>
-  <body class="bg-blue-900 p-20 relative">
+  <body
+    class="bg-blue-900 p-20 relative text-[10px] md:text-[16px] flex flex-col justify-center items-center"
+  >
     <div id="main">
       <div id="container" class="flex flex-col">
         <h1 class="text-white mt-10 text-[3em] text-center">
           Welcome The Basic Quiz App
         </h1>
-        <div id="question" class="bg-blue-800 h-40v my-10 rounded-xl c-mid">
+        <div
+          id="question"
+          class="bg-blue-800 h-40v w-70w md:w-80w my-10 rounded-xl c-mid p-5 text-center"
+        >
           Soru
         </div>
         <div
@@ -41,11 +46,11 @@
         </div>
         <div
           id="time"
-          class="time rounded !bg-red-700 w-[80px] h-[80px] text-[35px] text-white p-3 text-center m-auto translate-y-10 font-bold"
+          class="time rounded !bg-red-700 w-[3em] h-[3em] text-[2em] text-white p-3 text-center m-auto translate-y-10 font-bold"
         ></div>
         <div
           id="result"
-          class="absolute right-0 top-0 bg-slate-700 w-100w h-100v opacity-90 flex flex-col justify-center items-center text-white text-[40px]"
+          class="absolute right-0 top-0 bg-slate-700 w-100w h-100v opacity-90 flex flex-col justify-center items-center text-white text-[2em]"
         >
           <p id="text"><span id="span"></span></p>
           <button id="btn" class="bg-orange-300 p-4 rounded-xl mt-10">
