@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  position: relative;
+}
 html,
 body {
   padding: 0;
@@ -27,9 +30,4 @@ span {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-}
-#entry,
-#result {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
 }
