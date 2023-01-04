@@ -9,4 +9,4 @@
 
 ## 📷 Screenshot <br>
 
-<img src="https://media.giphy.com/media/jag7F0EYwaZiPWY5Ka/giphy.gif">
+<img src="https://drive.google.com/file/d/1grPUUTWPepI1IxwM9z_GEqXdW1yTUJjN/view?usp=sharing">
