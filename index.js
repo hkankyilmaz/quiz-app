@@ -49,7 +49,7 @@ class Quiz {
   result(rightAnswer) {
     document.querySelector(
       "#text"
-    ).innerHTML = `4 Sorudan <span class="bg-orange-300 p-4 text-center">${rightAnswer} </span> Tanesine Doğru Cevap Verdiniz`;
+    ).innerHTML = `4 Sorudan <span class="bg-orange-300 p-4 h-[40px] w-[40px] text-center">${rightAnswer} </span> Tanesine Doğru Cevap Verdiniz`;
 
     document.querySelector("#result").style.display = "flex";
   }
@@ -186,10 +186,13 @@ questions_.addQuestions(
 );
 
 let quiz = new Quiz(questions_);
-quiz.startQuiz("question", "options-one", "options-two", "options-three", 0);
 
 document.getElementById("btn").addEventListener("click", () => {
   location.reload();
+});
+document.getElementById("btn-entry").addEventListener("click", () => {
+  document.querySelector("#entry").style.display = "none";
+  quiz.startQuiz("question", "options-one", "options-two", "options-three", 0);
 });
 
 // -Doğru CevaplarAsagilardan Hangisi Turkiyenin Baskentidir ? Cevap:Ankara

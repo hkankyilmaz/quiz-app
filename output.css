@@ -795,6 +795,18 @@ video {
   height: 100vh;
 }
 
+.h-\[20px\] {
+  height: 20px;
+}
+
+.h-\[30px\] {
+  height: 30px;
+}
+
+.h-\[40px\] {
+  height: 40px;
+}
+
 .w-70w {
   width: 70vw;
 }
@@ -805,6 +817,18 @@ video {
 
 .w-100w {
   width: 100vw;
+}
+
+.w-\[20px\] {
+  width: 20px;
+}
+
+.w-\[30px\] {
+  width: 30px;
+}
+
+.w-\[40px\] {
+  width: 40px;
 }
 
 .flex-shrink {
@@ -1815,8 +1839,8 @@ video {
      object-fit: scale-down;
 }
 
-.p-20 {
-  padding: 5rem;
+.p-10 {
+  padding: 2.5rem;
 }
 
 .p-5 {
@@ -1831,8 +1855,12 @@ video {
   padding: 1rem;
 }
 
-.p-10 {
-  padding: 2.5rem;
+.p-7 {
+  padding: 1.75rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
 }
 
 .text-left {
@@ -1895,16 +1923,20 @@ video {
   font-size: 12px;
 }
 
-.text-\[1em\] {
-  font-size: 1em;
+.text-\[1\.5em\] {
+  font-size: 1.5em;
 }
 
 .text-\[2em\] {
   font-size: 2em;
 }
 
-.text-\[1\.5em\] {
-  font-size: 1.5em;
+.text-\[13px\] {
+  font-size: 13px;
+}
+
+.text-\[14px\] {
+  font-size: 14px;
 }
 
 .font-bold {
@@ -2442,10 +2474,6 @@ span {
 
   .md\:flex-row {
     flex-direction: row;
-  }
-
-  .md\:text-\[16px\] {
-    font-size: 16px;
   }
 
   .md\:text-\[20px\] {
