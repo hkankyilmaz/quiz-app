@@ -799,6 +799,10 @@ video {
   height: 3em;
 }
 
+.h-100v {
+  height: 100vh;
+}
+
 .h-\[40px\] {
   height: 40px;
 }
@@ -809,6 +813,10 @@ video {
 
 .w-\[3em\] {
   width: 3em;
+}
+
+.w-100w {
+  width: 100vw;
 }
 
 .w-\[40px\] {
@@ -2433,6 +2441,14 @@ span {
     height: 10vh;
   }
 
+  .md\:h-\[80px\] {
+    height: 80px;
+  }
+
+  .md\:h-\[70px\] {
+    height: 70px;
+  }
+
   .md\:w-80w {
     width: 80vw;
   }
@@ -2443,6 +2459,14 @@ span {
 
   .md\:w-20w {
     width: 20vw;
+  }
+
+  .md\:w-\[80px\] {
+    width: 80px;
+  }
+
+  .md\:w-\[70px\] {
+    width: 70px;
   }
 
   .md\:flex-row {

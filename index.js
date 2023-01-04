@@ -49,7 +49,7 @@ class Quiz {
   result(rightAnswer) {
     document.querySelector(
       "#text"
-    ).innerHTML = `4 Sorudan <span class="bg-orange-300 p-4 h-[40px] w-[40px] text-center">${rightAnswer} </span> Tanesine Doğru Cevap Verdiniz`;
+    ).innerHTML = `4 Sorudan <span class="bg-orange-300 p-4 h-[40px] w-[40px] md:h-[70px] md:w-[70px] text-center">${rightAnswer} </span> Tanesine Doğru Cevap Verdiniz`;
 
     document.querySelector("#result").style.display = "flex";
   }
