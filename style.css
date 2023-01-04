@@ -28,3 +28,8 @@ span {
   justify-content: center;
   align-items: center;
 }
+#entry,
+#result {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
